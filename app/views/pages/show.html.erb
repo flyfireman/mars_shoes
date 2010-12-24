@@ -1,0 +1,22 @@
+
+<h2><%#= "#{@page.title}" %></h2>
+
+
+<h2><%=h @page.title %></h2>
+
+<p>
+  <%= @page.body %>
+</p>
+
+
+<p>
+
+  <%= link_to "Edit", edit_page_path(@page) %> |
+
+
+  <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %> |
+
+
+  <%= link_to "View All", pages_path %>
+
+</p>
