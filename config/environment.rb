@@ -10,9 +10,25 @@ Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
-
+  config.load_once_paths += %W( #{RAILS_ROOT}/lib )
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
+  # Don't care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.163.com",
+    :port => 25,
+    :domain => "dohkoos.name",
+    :authentication => :login,
+    :user_name => "flyfireman@163.com",
+    :password => "nvidiaAMD"
+  }
+  config.action_mailer.default_charset = "UTF-8"
+
+  SITE_URL = "localhost:3000"
+  ADMINEMAIL = "flyfireman@163.com"
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
@@ -34,7 +50,7 @@ Rails::Initializer.run do |config|
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
-
+  config.active_record.observers = :user_observer
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de

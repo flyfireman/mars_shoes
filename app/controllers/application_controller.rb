@@ -2,8 +2,15 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  before_filter :set_current_user
+
+  #===============about restful-authentication==============#
+  include AuthenticatedSystem
+
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  
+  #============tiny_mce=================#
   uses_tiny_mce( :options => {
       :theme => 'advanced',  # 皮肤
       :language => 'zh',  # 中文界面
@@ -24,5 +31,10 @@ class ApplicationController < ActionController::Base
     :only => [:new, :edit, :show, :index, :create, :update])  # tiny_mce考虑的非常贴心，这里是限定哪些action中起用
 
   # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  filter_parameter_logging :password, :password_confirmation
+
+  protected
+  def set_current_user
+    Authorization.current_user = current_user
+  end
 end
