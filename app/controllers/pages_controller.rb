@@ -1,43 +1,46 @@
 class PagesController < ApplicationController
   def index
-    @pages = Page.all
+    @records = Page.paginate(:page => params[:page],
+      :per_page => params[:pre_page] || 3,
+      # :conditions=>["status = 'new'"],
+      :order=>"created_at DESC")
   end
   
   def show
-    @page = Page.find(params[:id])
+    @record = Page.find(params[:id])
   end
   
   def new
-    @page = Page.new
+    @record = Page.new
   end
   
   def create
-    @page = Page.new(params[:page])
-    if @page.save
+    @record = Page.new(params[:page])
+    if @record.save
       flash[:notice] = "Successfully created page."
-      redirect_to @page
+      redirect_to @record
     else
       render :action => 'new'
     end
   end
   
   def edit
-    @page = Page.find(params[:id])
+    @record = Page.find(params[:id])
   end
   
   def update
-    @page = Page.find(params[:id])
-    if @page.update_attributes(params[:page])
+    @record = Page.find(params[:id])
+    if @record.update_attributes(params[:page])
       flash[:notice] = "Successfully updated page."
-      redirect_to @page
+      redirect_to @record
     else
       render :action => 'edit'
     end
   end
   
   def destroy
-    @page = Page.find(params[:id])
-    @page.destroy
+    @record = Page.find(params[:id])
+    @record.destroy
     flash[:notice] = "Successfully destroyed page."
     redirect_to pages_url
   end

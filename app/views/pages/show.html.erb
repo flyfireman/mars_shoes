@@ -2,19 +2,19 @@
 <h2><%#= "#{@page.title}" %></h2>
 
 
-<h2><%=h @page.title %></h2>
+<h2><%=h @record.title %></h2>
 
 <p>
-  <%= @page.body %>
+  <%= @record.body %>
 </p>
 
 
 <p>
 
-  <%= link_to "Edit", edit_page_path(@page) %> |
+  <%= link_to "Edit", edit_page_path(@record) %> |
 
 
-  <%= link_to "Destroy", @page, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "Destroy", @record, :confirm => 'Are you sure?', :method => :delete %> |
 
 
   <%= link_to "View All", pages_path %>
