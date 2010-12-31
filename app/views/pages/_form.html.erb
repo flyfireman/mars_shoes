@@ -1,9 +1,9 @@
 <% form_for @record do |f| %>
-  <%= f.error_messages %>
+  <%#= f.error_messages %>
 
   <p>
     <%= f.label :title %><br />
-    <%= f.text_field :title, :size => 60 %>
+    <%= f.text_field :title, :size => 60 %><%= error_div(@record, :title, "标题")%>
   </p>
 
   <p>

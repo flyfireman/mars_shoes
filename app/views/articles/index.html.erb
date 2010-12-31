@@ -1,0 +1,58 @@
+<% content_for :head do %>
+  <%= auto_discovery_link_tag %>
+<% end %>
+<h1>文章列表</h1>
+
+<table>
+  <tr>
+
+    <th>User</th>
+
+    <th>Title</th>
+
+    <th>Synopsis</th>
+
+    <th>Body</th>
+
+    <th>Published</th>
+
+    <th>Published At</th>
+
+    <th>Category</th>
+
+  </tr>
+  <% for article in @records %>
+    <tr>
+
+      <td><%=h article.user_id %></td>
+
+      <td><%=h article.title %></td>
+
+      <td><%=h article.synopsis %></td>
+
+      <td><%=h article.body %></td>
+
+      <td><%=h article.published %></td>
+
+      <td><%=h article.published_at %></td>
+
+      <td><%=h article.category_id %></td>
+
+
+      <td><%= link_to "Show", article %></td>
+
+
+      <td><%= link_to "Edit", edit_article_path(article) %></td>
+
+
+      <td><%= link_to "Destroy", article, :confirm => 'Are you sure?', :method => :delete %></td>
+
+    </tr>
+  <% end %>
+</table>
+<div class="digg_pagination">
+  <%= will_paginate @records %>
+</div>
+
+<p><%= link_to "New Article", new_article_path %></p>
+

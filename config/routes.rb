@@ -1,4 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :categories do |categories|
+    categories.resources :articles, :name_prefix => 'category_'
+    #name_prefix选项能让你通过控制具名路由辅助方法依赖于环境来指向不同的资源.
+  end
+
+  map.resources :articles
+
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'

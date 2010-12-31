@@ -1,3 +1,14 @@
 <ul>
   <li><%= link_to '主页', pages_path %></li>
+  <%  if logged_in?  %>
+    <li>Logged in as: <i><%= current_user.login %></i></li>
+    <li><%= link_to '个人中心', edit_user_path(current_user) %></li>
+    <li><%= link_to '退出', logout_path %></li>
+
+  <%  else %>
+
+    <li><%= link_to '注册', signup_path %></li>
+    <li><%= link_to '登录', login_path %></li>
+  <%  end %>
+
 </ul>

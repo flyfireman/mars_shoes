@@ -9,7 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101227174325) do
+ActiveRecord::Schema.define(:version => 20101230234434) do
+
+  create_table "articles", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.text     "synopsis"
+    t.text     "body"
+    t.boolean  "published",    :default => false
+    t.datetime "published_at"
+    t.integer  "category_id",  :default => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pages", :force => true do |t|
     t.string   "title"
@@ -32,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20101227174325) do
     t.string   "activation_code",           :limit => 40
     t.datetime "activated_at"
     t.text     "roles"
+    t.text     "profile"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

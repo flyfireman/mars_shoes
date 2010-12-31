@@ -1,0 +1,33 @@
+one:
+
+  user_id: 1
+
+  title: MyString
+
+  synopsis: MyText
+
+  body: MyText
+
+  published: false
+
+  published_at: 2010-12-31 07:43:29
+
+  category_id: 1
+
+
+two:
+
+  user_id: 1
+
+  title: MyString
+
+  synopsis: MyText
+
+  body: MyText
+
+  published: false
+
+  published_at: 2010-12-31 07:43:29
+
+  category_id: 1
+

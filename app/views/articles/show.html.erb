@@ -1,0 +1,50 @@
+<% title "Article" %>
+
+
+<p>
+  <strong>User:</strong>
+  <%=h @record.user_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%=h @record.title %>
+</p>
+
+<p>
+  <strong>Synopsis:</strong>
+  <%=h @record.synopsis %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%=h @record.body %>
+</p>
+
+<p>
+  <strong>Published:</strong>
+  <%=h @record.published %>
+</p>
+
+<p>
+  <strong>Published At:</strong>
+  <%=h @record.published_at %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%=h @record.category_id %>
+</p>
+
+
+<p>
+
+  <%= link_to "Edit", edit_article_path(@record) %> |
+
+
+  <%= link_to "Destroy", @record, :confirm => 'Are you sure?', :method => :delete %> |
+
+
+  <%= link_to "View All", articles_path %>
+
+</p>

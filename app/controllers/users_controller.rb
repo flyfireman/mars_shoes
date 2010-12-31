@@ -3,21 +3,21 @@ class UsersController < ApplicationController
   #  include AuthenticatedSystem
   before_filter :load_user, :only => [:show, :edit, :update, :destroy]
   before_filter :new_user, :only => :new
-  filter_access_to :all
-  filter_access_to [:show, :edit, :update], :attribute_check => true
+ # filter_access_to :all
+  #filter_access_to [:show, :edit, :update], :attribute_check => true
 
   def index
-    @users = User.all
+    @records = User.all
   end
 
   def new;end
 
   def create
     logout_keeping_session!
-    @user = User.new(params[:user])
-    success = @user && @user.save
-    if success && @user.errors.empty?
-      self.current_user = @user # !! now logged in
+    @record = User.new(params[:user])
+    success = @record && @record.save
+    if success && @record.errors.empty?
+      self.current_user = @record # !! now logged in
       redirect_to users_url
       flash[:notice] = "注册成功。"
     else
@@ -31,9 +31,9 @@ class UsersController < ApplicationController
   def edit;end
 
   def update
-    if @user.update_attributes(params[:user])
+    if @record.update_attributes(params[:user])
       flash[:notice] = "更新用户成功。"
-      redirect_to @user
+      redirect_to @record
     else
       render :action => 'edit'
     end
@@ -41,23 +41,23 @@ class UsersController < ApplicationController
 
 
   def destroy
-    @user.destroy
+    @record.destroy
     flash[:notice] = "删除用户成功。"
     redirect_to users_url
   end
 =begin
   # render new.rhtml
   def new
-    @user = User.new
+    @record = User.new
   end
  
   def create
     logout_keeping_session!
-    @user = User.new(params[:user])
+    @record = User.new(params[:user])
 
-    success = @user && @user.save
+    success = @record && @record.save
 
-    if success && @user.errors.empty?
+    if success && @record.errors.empty?
       redirect_back_or_default('/')
       flash[:notice] = "Thanks for signing up!  We're sending you an email with your activation code."
     else
@@ -85,11 +85,11 @@ class UsersController < ApplicationController
 
   protected
   def load_user
-    @user = User.find params[:id]
+    @record = User.find params[:id]
   end
 
   def new_user
-    @user = User.new
+    @record = User.new
   end
 
   def permission_denied

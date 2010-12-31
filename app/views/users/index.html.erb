@@ -6,7 +6,7 @@
       <th>角色：</th>
       <th>操作：</th>
     </tr>
-    <%- @users.each do |user| -%>
+    <%- @records.each do |user| -%>
       <tr>
         <td><b><%= link_to user.login,user %></b></td>
         <td><%=  h user.roles.map(&:to_s) * ',' if user.roles %></td>

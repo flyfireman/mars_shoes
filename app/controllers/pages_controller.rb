@@ -4,6 +4,9 @@ class PagesController < ApplicationController
       :per_page => params[:pre_page] || 3,
       # :conditions=>["status = 'new'"],
       :order=>"created_at DESC")
+    @images  = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg"]
+    @random_no = rand(5)
+    @random_image = @images[@random_no]
   end
   
   def show
